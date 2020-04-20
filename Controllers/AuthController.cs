@@ -55,7 +55,7 @@ namespace DatingApp.API.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                 new Claim(ClaimTypes.Name, userFromRepo.Username)
-            };
+                };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
@@ -76,6 +76,9 @@ namespace DatingApp.API.Controllers
             {
                 token = tokenHandler.WriteToken(token)
             });
+
+            return StatusCode(500, "Computer really says no");
+
         }
     }
 }
